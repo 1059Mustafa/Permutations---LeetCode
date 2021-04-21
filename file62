@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void find(vector<int>& nums,int l, int r, vector<vector<int>>&v)
+    {
+        if(l==r)
+        {
+            v.push_back(nums);
+        }
+        
+        for(int i=l;i<=r;i++)
+        {
+            swap(nums[l],nums[i]);
+            find(nums,l+1,r,v);
+            swap(nums[l],nums[i]);
+        }
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) 
+    {
+        vector<vector<int>>v;
+        
+        int l=0;
+        int r=nums.size()-1;
+        find(nums,l,r,v);
+        return v;   
+    }
+};
